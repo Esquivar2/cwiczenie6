@@ -1,4 +1,8 @@
 using APBD_Zadanie_6.Models;
+using APBD_Zadanie_6.Repositories.Interfaces;
+using APBD_Zadanie_6.Repositories.Repository;
+using APBD_Zadanie_6.Services.Interfaces;
+using APBD_Zadanie_6.Services.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+builder.Services.AddScoped<IHospitalService, HospitalService>();
 builder.Services.AddDbContext<Context>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("sXXXXX"));
